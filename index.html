@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gastronomía de Portugal</title>
+
+  <!-- Tipografía moderna -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --verde-principal: #007b5e;
+      --verde-claro: #00cc88;
+      --verde-suave: #d4f1e7;
+      --rojo-principal: #e63946;
+      --gris-oscuro: #222;
+      --gris-claro: #f4f4f4;
+      --blanco: #ffffff;
+      --sombra-suave: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.8;
+      background-color: var(--gris-claro);
+      color: #333;
+      padding: 40px 20px;
+    }
+
+    header {
+      background-color: var(--verde-principal);
+      color: var(--blanco);
+      text-align: center;
+      padding: 80px 20px;
+      border-radius: 12px;
+      box-shadow: var(--sombra-suave);
+    }
+
+    header h1 {
+      font-size: 4rem;
+      font-weight: 700;
+      margin-bottom: 25px;
+    }
+
+    header p {
+      font-size: 1.6rem;
+      font-weight: 300;
+    }
+
+    #mensaje-bienvenida {
+      background-color: var(--verde-suave);
+      color: var(--verde-principal);
+      font-weight: 600;
+      text-align: center;
+      padding: 25px;
+      margin: 50px auto;
+      border-left: 6px solid var(--verde-claro);
+      box-shadow: var(--sombra-suave);
+      max-width: 900px;
+      border-radius: 8px;
+    }
+
+    nav {
+      background-color: var(--gris-oscuro);
+      box-shadow: var(--sombra-suave);
+      margin-bottom: 50px;
+      border-radius: 10px;
+    }
+
+    #toggle-menu {
+      background-color: var(--verde-principal);
+      color: var(--blanco);
+      padding: 15px;
+      border: none;
+      cursor: pointer;
+      font-size: 1.3rem;
+      width: 100%;
+      display: none;
+      border-radius: 6px;
+      transition: background-color 0.3s ease;
+    }
+
+    #toggle-menu:hover {
+      background-color: var(--verde-claro);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 20px 0;
+      gap: 30px;
+    }
+
+    nav ul li a {
+      color: var(--blanco);
+      text-decoration: none;
+      font-size: 1.3rem;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover,
+    nav ul li a:focus {
+      color: var(--rojo-principal);
+    }
+
+    section {
+      padding: 70px 40px;
+      max-width: 1200px;
+      margin: 50px auto;
+      background-color: var(--blanco);
+      border-radius: 15px;
+      box-shadow: var(--sombra-suave);
+    }
+
+    section h2 {
+      font-size: 2.8rem;
+      color: var(--verde-principal);
+      margin-bottom: 35px;
+      text-align: center;
+    }
+
+    section p {
+      font-size: 1.25rem;
+      margin-bottom: 30px;
+      line-height: 1.9;
+    }
+
+    section ul {
+      margin-left: 40px;
+      margin-bottom: 30px;
+    }
+
+    section ul li {
+      font-size: 1.2rem;
+      margin-bottom: 18px;
+    }
+
+    .plato {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+      margin-bottom: 60px;
+      flex-wrap: wrap;
+    }
+
+    .imagen-plato {
+      width: 380px;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: var(--sombra-suave);
+    }
+
+    .plato h3 {
+      color: var(--rojo-principal);
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .plato p {
+      font-size: 1.2rem;
+      color: var(--gris-oscuro);
+      max-width: 600px;
+    }
+
+    /* Sección destacado */
+    .destacado {
+      background-color: var(--verde-suave);
+      padding: 60px 30px;
+      border-radius: 15px;
+      box-shadow: var(--sombra-suave);
+      margin: 60px auto;
+      max-width: 1200px;
+    }
+
+    .contenido-destacado {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 40px;
+      justify-content: center;
+    }
+
+    .contenido-destacado img {
+      width: 420px;
+      max-width: 100%;
+      border-radius: 12px;
+      box-shadow: var(--sombra-suave);
+    }
+
+    .texto-destacado {
+      max-width: 600px;
+      text-align: left;
+    }
+
+    .texto-destacado h2 {
+      font-size: 2.6rem;
+      color: var(--verde-principal);
+      margin-bottom: 20px;
+    }
+
+    .texto-destacado p {
+      font-size: 1.25rem;
+      margin-bottom: 30px;
+      line-height: 1.8;
+    }
+
+    .btn-destacado {
+      display: inline-block;
+      padding: 12px 25px;
+      background-color: var(--verde-principal);
+      color: var(--blanco);
+      font-size: 1.1rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-destacado:hover {
+      background-color: var(--verde-claro);
+    }
+
+    footer {
+      background-color: var(--gris-oscuro);
+      color: var(--blanco);
+      text-align: center;
+      padding: 40px 20px;
+      margin-top: 60px;
+      border-radius: 12px;
+    }
+
+    footer a {
+      color: var(--verde-claro);
+      text-decoration: none;
+      margin: 0 20px;
+      font-size: 1.1rem;
+    }
+
+    footer a:hover {
+      color: var(--blanco);
+    }
+
+    @media (max-width: 768px) {
+      #toggle-menu {
+        display: block;
+      }
+
+      nav ul {
+        flex-direction: column;
+        gap: 20px;
+        display: none;
+      }
+
+      nav ul.show {
+        display: flex;
+      }
+
+      .plato {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .imagen-plato {
+        width: 100%;
+        max-width: 400px;
+      }
+
+      .contenido-destacado {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .texto-destacado {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Mensaje dinámico -->
+  <div id="mensaje-bienvenida"></div>
+
+  <!-- Header -->
+  <header>
+    <h1>Gastronomía de Portugal</h1>
+    <p>Descubre los sabores únicos de la cocina portuguesa</p>
+  </header>
+
+  <!-- Navegación -->
+  <nav role="navigation" aria-label="Menú principal">
+    <button id="toggle-menu">Menú ☰</button>
+    <ul id="menu-principal">
+      <li><a href="#introduccion">Introducción</a></li>
+      <li><a href="#platos">Platos Típicos</a></li>
+      <li><a href="#destacado">Destacado</a></li>
+      <li><a href="#colores">Colores Culturales</a></li>
+      <li><a href="#simbolos">Símbolos Representativos</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <!-- Contenido principal -->
+  <main>
+    <!-- Introducción -->
+    <section id="introduccion">
+      <h2>Introducción a la Gastronomía Portuguesa</h2>
+      <p>La gastronomía de Portugal es rica y variada, con fuertes influencias mediterráneas. Entre sus platos más emblemáticos, destacan el pastel de nata, el bacalao y el caldo verde, cada uno con sus propias historias y tradiciones.</p>
+    </section>
+
+    <!-- Destacado -->
+    <section id="destacado" class="destacado">
+      <div class="contenido-destacado">
+        <img src="imagenes/destacado.jpg" alt="Plato destacado portugués">
+        <div class="texto-destacado">
+          <h2>Platos Estrellas de Portugal</h2>
+          <p>Descubre a continuación los diferentes platos típicos o lo platos típicos más destacados del país de Portugal, vamos allá, SIUU.</p>
+          <a href="#platos" class="btn-destacado">Ver más platos</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Platos -->
+    <section id="platos">
+      <h2>Platos Típicos de Portugal</h2>
+
+      <div class="plato">
+        <img src="imagenes/pastel-de-nata.jpg" alt="Pastel de nata sobre una bandeja de postres" class="imagen-plato">
+        <div>
+          <h3>Pastel de Nata</h3>
+          <p>Delicioso pastelito relleno de crema a base de huevo y leche, con una cubierta caramelizada irresistible.</p>
+        </div>
+      </div>
+
+      <div class="plato">
+        <img src="imagenes/bacalao.jpg" alt="Plato de bacalao cocinado al estilo portugués" class="imagen-plato">
+        <div>
+          <h3>Bacalao</h3>
+          <p>Ingrediente esencial en la cocina portuguesa, preparado de múltiples formas, desde el bacalao dorado hasta al horno.</p>
+        </div>
+      </div>
+
+      <div class="plato">
+        <img src="imagenes/caldo-verde.jpg" alt="Caldo verde servido en un bol de cerámica" class="imagen-plato">
+        <div>
+          <h3>Caldo Verde</h3>
+          <p>Una sopa tradicional con patata, col rizada y chorizo, típica del norte de Portugal y muy reconfortante.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Colores -->
+    <section id="colores">
+      <h2>Colores Culturales de Portugal</h2>
+      <p>Portugal se representa visualmente a través de una gama de colores profundamente simbólicos:</p>
+      <ul>
+        <li><strong>Verde:</strong> Refleja los campos y paisajes naturales.</li>
+        <li><strong>Rojo:</strong> Representa el valor y la sangre derramada por la patria.</li>
+        <li><strong>Azul y dorado:</strong> Elementos del escudo de armas que representan historia y realeza.</li>
+      </ul>
+    </section>
+
+    <!-- Símbolos -->
+    <section id="simbolos">
+      <h2>Símbolos Representativos de Portugal</h2>
+      <ul>
+        <li><strong>Gallo de Barcelos:</strong> Símbolo de fe, justicia y buena suerte.</li>
+        <li><strong>Lobo ibérico:</strong> Animal nacional protegido.</li>
+        <li><strong>Lavanda:</strong> Flor nacional que representa la tranquilidad.</li>
+        <li><strong>Fútbol:</strong> Pasión nacional y elemento clave de la identidad cultural moderna.</li>
+      </ul>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer id="contacto">
+    <p>Contacto: info@portugalgastronomia.com</p>
+    <p>Síguenos en redes sociales:
+      <a href="https://www.instagram.com" target="_blank">Instagram</a> |
+      <a href="https://www.facebook.com" target="_blank">Facebook</a>
+    </p>
+  </footer>
+
+  <!-- JS Interactividad -->
+  <script>
+    const mensaje = document.getElementById("mensaje-bienvenida");
+    const idioma = navigator.language || navigator.userLanguage;
+
+    let saludo = "Bienvenido a nuestro sitio de gastronomía portuguesa!";
+    if (idioma.startsWith("en")) {
+      saludo = "Welcome to our Portuguese gastronomy site!";
+    } else if (idioma.startsWith("pt")) {
+      saludo = "Bem-vindo ao nosso site de gastronomia portuguesa!";
+    }
+
+    mensaje.textContent = saludo;
+
+    const toggleButton = document.getElementById("toggle-menu");
+    const menu = document.getElementById("menu-principal");
+
+    toggleButton.addEventListener("click", () => {
+      menu.classList.toggle("show");
+    });
+  </script>
+</body>
+</html>
